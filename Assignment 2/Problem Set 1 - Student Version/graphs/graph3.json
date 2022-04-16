@@ -1,0 +1,27 @@
+{
+    "graph":{
+        "a": {
+            "position": [0, 0],
+            "infected": "False",
+            "adjacent": ["b", "c", "d"]
+        },
+        "b": {
+            "position": [0, 1],
+            "infected": "False",
+            "adjacent": ["d"]
+        },
+        "c": {
+            "position": [1, 0],
+            "infected": "False",
+            "adjacent": []
+        },
+        "d": {
+            "position": [0, -1],
+            "infected": "True",
+            "adjacent": ["c"]
+        }
+    },
+    "start": "a",
+    "goal": "d",
+    "figure": "graph3_fig.txt"
+}

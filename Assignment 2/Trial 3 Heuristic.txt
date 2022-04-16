@@ -1,0 +1,25 @@
+  # List of all the remaining coins
+    coins = list(state.remaining_coins)
+    # distanceToEnd variable will keep the minimum distance between player to exit or between one of the coins and the exit
+    distanceToEnd = manhattan_distance(state.player, problem.layout.exit)
+    # The final number of steps
+    count = 0
+    # While there are remaining coins that we did not collect yet
+    for i in range(0, len(coins)):
+        # minDistance variable will keep the minimum distance between the current coin (coin[0]) and the player or any other coin
+        minDistance = manhattan_distance(state.player, coins[i])
+        for j in range(0, len(coins)):
+            if(i == j):
+                continue
+            # Calculate the distance between every remaining coin with the current coin
+            distanceBet2Coins = manhattan_distance(coins[j], coins[i])
+            # If this distance is less than the current minimum distance
+            if(distanceBet2Coins <= minDistance):
+                minDistance = distanceBet2Coins
+        # Add this distance to the count
+        count += minDistance
+        # Check if this coin is closer to the exit than the current min distance to exit
+        distanceToEnd = min(distanceToEnd, manhattan_distance(
+            coins[i], problem.layout.exit))
+
+    return count + distanceToEnd

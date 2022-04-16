@@ -1,0 +1,32 @@
+   # Reduce the problem in a way that there are no walls
+
+    # The following heuristic is based on the idea that the player must collect all the coins and that there are no walls
+    # So he keeps moving from one coin to another untill he collects all the coins then goes to the exit
+    # for problem reduction we dont know the sequence for collecting the coins so we get the minimum distance between any 2 coins
+    # and this is the required distance to collect this coin and then keep collecting the others
+
+    # List of all the remaining coins
+    coins = list(state.remaining_coins)
+    # distanceToEnd variable will keep the minimum distance between player to exit or between one of the coins and the exit
+    distanceToEnd = manhattan_distance(state.player, problem.layout.exit)
+    # The final number of steps
+    count = 0
+    # While there are remaining coins that we did not collect yet
+    while(coins):
+        # minDistance variable will keep the minimum distance between the current coin (coin[0]) and the player or any other coin
+        minDistance = manhattan_distance(state.player, coins[0])
+        for i in range(1, len(coins)):
+            # Calculate the distance between every remaining coin with the current coin
+            distanceBet2Coins = manhattan_distance(coins[0], coins[i])
+            # If this distance is less than the current minimum distance
+            if(distanceBet2Coins <= minDistance):
+                minDistance = distanceBet2Coins
+        # Add this distance to the count
+        count += minDistance
+        # Check if this coin is closer to the exit than the current min distance to exit
+        distanceToEnd = min(distanceToEnd, manhattan_distance(
+            coins[0], problem.layout.exit))
+        # Remove this coin (as if it was collected)
+        coins.pop(0)
+
+    return count + distanceToEnd

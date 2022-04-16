@@ -1,0 +1,37 @@
+{
+    "graph":{
+        "a": {
+            "position": [0, 0],
+            "infected": "False",
+            "adjacent": ["b", "c"]
+        },
+        "b": {
+            "position": [1, 1],
+            "infected": "False",
+            "adjacent": ["d"]
+        },
+        "c": {
+            "position": [-1, 0],
+            "infected": "False",
+            "adjacent": ["f"]
+        },
+        "d": {
+            "position": [2, 1],
+            "infected": "False",
+            "adjacent": ["e"]
+        },
+        "e": {
+            "position": [2, 0],
+            "infected": "True",
+            "adjacent": ["f"]
+        },
+        "f": {
+            "position": [1, 0],
+            "infected": "False",
+            "adjacent": []
+        }
+    },
+    "start": "a",
+    "goal": "f",
+    "figure": "graph4_fig.txt"
+}

@@ -1,0 +1,10 @@
+B
+^
+|
+A->C->G
+|
+v
+D
+Infected Nodes: C
+Start: A
+Goal: G

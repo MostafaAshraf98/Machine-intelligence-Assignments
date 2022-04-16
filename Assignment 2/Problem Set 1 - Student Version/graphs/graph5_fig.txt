@@ -1,0 +1,10 @@
+   /->B->D
+   |     |
+   |     V  
+C<-A  F<-E
+|     ^
+|     |
+\-----/
+Infected Nodes: None
+Start: A
+Goal: E

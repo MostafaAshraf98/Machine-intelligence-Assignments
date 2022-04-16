@@ -1,0 +1,18 @@
+    # currentPlayerLocation = state.player
+    # coinsLocations = list(state.remaining_coins)
+    # count = 0
+    # while (coinsLocations):
+    #     closestCoinToCurrLocation = manhattan_distance(
+    #         currentPlayerLocation, coinsLocations[0])
+    #     indexClosest = 0
+    #     for i in range(1, len(coinsLocations)):
+    #         distPlayerToCoin = manhattan_distance(
+    #             currentPlayerLocation, coinsLocations[i])
+    #         if(distPlayerToCoin < closestCoinToCurrLocation):
+    #             closestCoinToCurrLocation = distPlayerToCoin
+    #             indexClosest = i
+    #     count += closestCoinToCurrLocation
+    #     currentPlayerLocation = coinsLocations[indexClosest]
+    #     coinsLocations.pop(indexClosest)
+    # count += manhattan_distance(currentPlayerLocation, problem.layout.exit)
+    # return count

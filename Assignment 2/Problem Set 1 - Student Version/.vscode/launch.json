@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/play_graph.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": ["./graphs/graph1.json", "-a", "dfs"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+    +-E
+   / /|\
+  | | | \
+  | | | |
+  B | | |
+ /|\| | |
+A | D | G
+| | |\|/
+| | | F
+ \|/ /
+  C-+
+Infected Nodes: E
+Start: A
+Goal: G
