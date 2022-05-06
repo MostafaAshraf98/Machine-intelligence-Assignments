@@ -1,3 +1,4 @@
+from json.encoder import INFINITY
 from typing import Tuple
 from game import HeuristicFunction, Game, S, A
 from helpers.utils import NotImplemented
@@ -43,11 +44,101 @@ maxPlayer = None
 
 
 def minimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
+    # The max Node is the root node (the agent that calls the function for the first time)
+    global maxPlayer
     if maxPlayer == None:
         maxPlayer = game.get_turn(state)
 
+    # get the agent index
+    agent = game.get_turn(state)
 
-# Apply Alpha Beta pruning and return the tree value and the best action
+    # Check if this state is a terminal state
+    # if it is a terminal state, the second return value will be a list of terminal values for all agents
+    # if it is not a terminal state, the second return value will be None
+    terminal, values = game.is_terminal(state)
+
+    # if it is a terminal state, return the terminal value and None for actions
+    if terminal:
+        return values[agent], None
+
+    # Get all the next states (resulting states of all the possible actions from the current state)
+    # action_states is a list of tuples (action, state)
+    actions_states = [(action, game.get_successor(state, action))
+                      for action in game.get_actions(state)]
+
+    # if it is the max Node, then maximize the value
+    if agent == maxPlayer:
+        v = (-INFINITY, None)
+        # for each next state
+        for (_, state) in actions_states:
+            temp = min_value(game, state, agent)
+            if temp[0] > v[0]:
+                v = temp
+        return v
+    # if it is any other Node, then it is a min Node, then minimize the value
+    else:
+        v = (INFINITY, None)
+        for (_, state) in actions_states:
+            temp = max_value(game, state, agent)
+            if temp[0] < v[0]:
+                v = temp
+        return v
+
+
+def max_value(game: Game[S, A], state: S, agent: int) -> Tuple[float, A]:
+
+    # Check if this state is a terminal state
+    # if it is a terminal state, the second return value will be a list of terminal values for all agents
+    # if it is not a terminal state, the second return value will be None
+    terminal, values = game.is_terminal(state)
+
+    # if it is a terminal state, return the terminal value and None for actions
+    if terminal:
+        return values[agent], None
+
+    v = (-INFINITY, None)
+
+    # Get all the next states (resulting states of all the possible actions from the current state)
+    # action_states is a list of tuples (action, state)
+    actions_states = [(action, game.get_successor(state, action))
+                      for action in game.get_actions(state)]
+
+    # Get the best action (The one with the maximum value) and its value based
+    for (action, state) in actions_states:
+        temp = min_value(game, state, agent)
+        if temp[0] > v[0]:
+            v = temp
+    return v
+
+
+def min_value(game: Game[S, A], state: S, agent: int) -> Tuple[float, A]:
+
+    # Check if this state is a terminal state
+    # if it is a terminal state, the second return value will be a list of terminal values for all agents
+    # if it is not a terminal state, the second return value will be None
+    terminal, values = game.is_terminal(state)
+
+    # if it is a terminal state, return the terminal value and None for actions
+    if terminal:
+        return values[agent], None
+
+    v = (INFINITY, None)
+
+    # Get all the next states (resulting states of all the possible actions from the current state)
+    # action_states is a list of tuples (action, state)
+    actions_states = [(action, game.get_successor(state, action))
+                      for action in game.get_actions(state)]
+
+    # Get the best action (The one with the maximum value) and its value based
+    for (action, state) in actions_states:
+        temp = max_value(game, state, agent)
+        if temp[0] < v[0]:
+            v = temp
+    return v
+
+    # Apply Alpha Beta pruning and return the tree value and the best action
+
+
 def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
     # TODO: ADD YOUR CODE HERE
     NotImplemented()
