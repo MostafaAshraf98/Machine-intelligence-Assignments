@@ -155,18 +155,6 @@ def minimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
     # The max Node is the root node (the agent that calls the function for the first time)
     maxPlayer = game.get_turn(state)
 
-    # Check if this state is a terminal state
-    # if it is a terminal state, the second return value will be a list of terminal values for all agents
-    # if it is not a terminal state, the second return value will be None
-    terminal, values = game.is_terminal(state)
-
-    # if it is a terminal state, return the terminal value and None for actions
-    if terminal:
-        return values[maxPlayer], None
-    # if the max depth is reached, return the heuristic value
-    if max_depth == 0:
-        return heuristic(game, state, maxPlayer), None
-
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
     actions_states = [(action, game.get_successor(state, action))
@@ -190,18 +178,6 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
     # The max Node is the root node (the agent that calls the function for the first time)
     maxPlayer = game.get_turn(state)
 
-    # Check if this state is a terminal state
-    # if it is a terminal state, the second return value will be a list of terminal values for all agents
-    # if it is not a terminal state, the second return value will be None
-    terminal, values = game.is_terminal(state)
-
-    # if it is a terminal state, return the terminal value and None for actions
-    if terminal:
-        return values[maxPlayer], None
-    # if the max depth is reached, return the heuristic value
-    if max_depth == 0:
-        return heuristic(game, state, maxPlayer), None
-
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
     actions_states = [(action, game.get_successor(state, action))
@@ -223,18 +199,6 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
 def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
     # get the agent index
     agent = game.get_turn(state)
-
-    # Check if this state is a terminal state
-    # if it is a terminal state, the second return value will be a list of terminal values for all agents
-    # if it is not a terminal state, the second return value will be None
-    terminal, values = game.is_terminal(state)
-
-    # if it is a terminal state, return the terminal value and None for actions
-    if terminal:
-        return values[agent], None
-    # if the max depth is reached, return the heuristic value
-    if max_depth == 0:
-        return heuristic(game, state, agent), None
 
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
@@ -260,18 +224,6 @@ def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
 def expectimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
     # The max Node is the root node (the agent that calls the function for the first time)
     maxPlayer = game.get_turn(state)
-
-    # Check if this state is a terminal state
-    # if it is a terminal state, the second return value will be a list of terminal values for all agents
-    # if it is not a terminal state, the second return value will be None
-    terminal, values = game.is_terminal(state)
-
-    # if it is a terminal state, return the terminal value and None for actions
-    if terminal:
-        return values[maxPlayer], None
-    # if the max depth is reached, return the heuristic value
-    if max_depth == 0:
-        return heuristic(game, state, maxPlayer), None
 
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
