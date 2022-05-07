@@ -58,9 +58,12 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
     terminal, values = game.is_terminal(state)
 
     # if it is a terminal state, return the terminal value and None for actions
+    # it is values[maxPlayer] and not values[agent] because all the agents want to maximize/minimize the utility of maxPlayer and not their own
     if terminal:
         return values[maxPlayer], None
+
       # if the max depth is reached, return the heuristic value
+      # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
     if max_depth == 0:
         return heuristic(game, state, maxPlayer), None
 
@@ -113,10 +116,24 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
                 v = temp, action
             if v[0] >= beta:
                 return v
-            alpha = min(alpha, v[0])
+            alpha = max(alpha, v[0])
         return v
-    # negamax and min Node
-    elif choice == 2:
+    # negamax with minNode
+    elif choice == 2 and agent != maxPlayer:
+        v = (-INFINITY, None)
+        # Get the best action (The one with the maximum value) and its value
+
+        for (action, next_state) in actions_states:
+            temp, _ = value(
+                game, next_state, heuristic, max_depth-1, 0, 0, 2, maxPlayer)
+            temp = -temp
+            if temp > v[0]:
+                v = temp, action
+        v = (-v[0], v[1])
+        return v
+    elif choice == 2 and agent == maxPlayer:
+        v = (-INFINITY, None)
+        # Get the best action (The one with the maximum value) and its value
         v = (-INFINITY, None)
         # Get the best action (The one with the maximum value) and its value
         for (action, next_state) in actions_states:
@@ -124,9 +141,7 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
                 game, next_state, heuristic, max_depth-1, 0, 0, 2, maxPlayer)
             if temp > v[0]:
                 v = temp, action
-        v = (-v[0], v[1])
         return v
-
     # Expectimax and choice Node
     elif choice == 3 and agent != maxPlayer:
         v = (0, None)
@@ -148,7 +163,6 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
                 v = temp, action
         return v
 ##############################################################################################################################
-
 
 # Apply Minimax search and return the tree value and the best action
 
@@ -224,7 +238,7 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
 
 def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
     # get the agent index
-    agent = game.get_turn(state)
+    maxPlayer = game.get_turn(state)
 
     # Check if this state is a terminal state
     # if it is a terminal state, the second return value will be a list of terminal values for all agents
@@ -233,10 +247,10 @@ def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
 
     # if it is a terminal state, return the terminal value and None for actions
     if terminal:
-        return values[agent], None
+        return values[maxPlayer], None
     # if the max depth is reached, return the heuristic value
     if max_depth == 0:
-        return heuristic(game, state, agent), None
+        return heuristic(game, state, maxPlayer), None
 
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
@@ -247,10 +261,9 @@ def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
     # for each next state
     for (action, next_state) in actions_states:
         temp, _ = value(
-            game, next_state, heuristic, max_depth-1, 0, 0, 2, agent)
+            game, next_state, heuristic, max_depth-1, 0, 0, 2, maxPlayer)
         if temp > v[0]:
             v = temp, action
-    # v = (-v[0], v[1])
     return v
 
 
