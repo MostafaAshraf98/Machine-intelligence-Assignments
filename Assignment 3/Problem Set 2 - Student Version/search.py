@@ -49,19 +49,20 @@ def greedy(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: 
 
 def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int, alpha: int, beta: int, choice: int, maxPlayer: int) -> Tuple[float, A]:
 
+    # get the agent index
+    agent = game.get_turn(state)
+
     # Check if this state is a terminal state
     # if it is a terminal state, the second return value will be a list of terminal values for all agents
     # if it is not a terminal state, the second return value will be None
     terminal, values = game.is_terminal(state)
-    # get the agent index
-    agent = game.get_turn(state)
 
     # if it is a terminal state, return the terminal value and None for actions
     if terminal:
-        return values[agent], None
+        return values[maxPlayer], None
       # if the max depth is reached, return the heuristic value
     if max_depth == 0:
-        return heuristic(game, state, agent), None
+        return heuristic(game, state, maxPlayer), None
 
     # Get all the next states (resulting states of all the possible actions from the current state)
     # action_states is a list of tuples (action, state)
@@ -114,7 +115,7 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
                 return v
             alpha = min(alpha, v[0])
         return v
-    # negamax Node
+    # negamax and min Node
     elif choice == 2:
         v = (-INFINITY, None)
         # Get the best action (The one with the maximum value) and its value
@@ -125,6 +126,7 @@ def value(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: i
                 v = temp, action
         v = (-v[0], v[1])
         return v
+
     # Expectimax and choice Node
     elif choice == 3 and agent != maxPlayer:
         v = (0, None)
@@ -248,7 +250,7 @@ def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
             game, next_state, heuristic, max_depth-1, 0, 0, 2, agent)
         if temp > v[0]:
             v = temp, action
-    v = (-v[0], v[1])
+    # v = (-v[0], v[1])
     return v
 
 
