@@ -58,8 +58,8 @@ def minimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
         if terminal:
             return values[maxPlayer], None
 
-          # if the max depth is reached, return the heuristic value
-          # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
+        # if the max depth is reached, return the heuristic value
+        # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if max_depth == 0:
             return heuristic(game, state, maxPlayer), None
 
@@ -125,19 +125,29 @@ def minimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
 
 def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
     def value_alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int, alpha: int, beta: int, maxPlayer: int) -> Tuple[float, A]:
-
+     # get the agent index
         agent = game.get_turn(state)
 
+        # Check if this state is a terminal state
+        # if it is a terminal state, the second return value will be a list of terminal values for all agents
+        # if it is not a terminal state, the second return value will be None
         terminal, values = game.is_terminal(state)
 
+        # if it is a terminal state, return the terminal value and None for actions
+        # it is values[maxPlayer] and not values[agent] because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if terminal:
             return values[maxPlayer], None
 
+        # if the max depth is reached, return the heuristic value
+        # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if max_depth == 0:
             return heuristic(game, state, maxPlayer), None
 
+        # Get all the next states (resulting states of all the possible actions from the current state)
+        # action_states is a list of tuples (action, state)
         actions_states = [(action, game.get_successor(state, action))
                           for action in game.get_actions(state)]
+
         # Alphabeta and min Node
         if agent != maxPlayer:
             v = (INFINITY, None)
@@ -147,8 +157,10 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
                     game, next_state, heuristic, max_depth-1, alpha, beta, maxPlayer)
                 if temp < v[0]:
                     v = temp, action
+                # Alpha pruning
                 if v[0] <= alpha:
                     return v
+                # Update beta
                 beta = min(beta, v[0])
             return v
         # Alphabeta and max Node
@@ -160,13 +172,17 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
                     game, next_state, heuristic, max_depth-1, alpha, beta, maxPlayer)
                 if temp > v[0]:
                     v = temp, action
+                    # Beta pruning
                 if v[0] >= beta:
                     return v
+                # Update alpha
                 alpha = max(alpha, v[0])
             return v
 ##############################################################################################################################
+    # get the agent index
     maxPlayer = game.get_turn(state)
 
+    # Call max on the root node
     v = value_alphabeta(
         game, state, heuristic, max_depth, -INFINITY, INFINITY, maxPlayer)
     return v
@@ -176,24 +192,33 @@ def alphabeta(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_dept
 def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
 
     def value_negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int, maxPlayer: int) -> Tuple[float, A]:
-
+        # get the agent index
         agent = game.get_turn(state)
 
+        # Check if this state is a terminal state
+        # if it is a terminal state, the second return value will be a list of terminal values for all agents
+        # if it is not a terminal state, the second return value will be None
         terminal, values = game.is_terminal(state)
 
+        # if it is a terminal state, return the terminal value and None for actions
+        # it is values[maxPlayer] and not values[agent] because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if terminal:
             return values[maxPlayer], None
 
+        # if the max depth is reached, return the heuristic value
+        # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if max_depth == 0:
             return heuristic(game, state, maxPlayer), None
 
+        # Get all the next states (resulting states of all the possible actions from the current state)
+        # action_states is a list of tuples (action, state)
         actions_states = [(action, game.get_successor(state, action))
                           for action in game.get_actions(state)]
+
         # negamax with minNode
         if agent != maxPlayer:
             v = (-INFINITY, None)
             # Get the best action (The one with the maximum value) and its value
-
             for (action, next_state) in actions_states:
                 temp, _ = value_negamax(
                     game, next_state, heuristic, max_depth-1, maxPlayer)
@@ -250,29 +275,39 @@ def negamax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth:
 def expectimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int = -1) -> Tuple[float, A]:
 
     def value_expectimax(game: Game[S, A], state: S, heuristic: HeuristicFunction, max_depth: int, maxPlayer: int) -> Tuple[float, A]:
-
+        # get the agent index
         agent = game.get_turn(state)
 
+        # Check if this state is a terminal state
+        # if it is a terminal state, the second return value will be a list of terminal values for all agents
+        # if it is not a terminal state, the second return value will be None
         terminal, values = game.is_terminal(state)
 
+        # if it is a terminal state, return the terminal value and None for actions
+        # it is values[maxPlayer] and not values[agent] because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if terminal:
             return values[maxPlayer], None
 
+        # if the max depth is reached, return the heuristic value
+        # it is heuristic(game, state, maxPlayer) and not heuristic(game, state, agent) because all the agents want to maximize/minimize the utility of maxPlayer and not their own
         if max_depth == 0:
             return heuristic(game, state, maxPlayer), None
 
+        # Get all the next states (resulting states of all the possible actions from the current state)
+        # action_states is a list of tuples (action, state)
         actions_states = [(action, game.get_successor(state, action))
                           for action in game.get_actions(state)]
+        # Expectimax and chance Node
         if agent != maxPlayer:
             v = (0, None)
-            # Get the best action (The one with the maximum value) and its value based
+            # Get the average value of all the next states
             for (action, next_state) in actions_states:
                 temp, _ = value_expectimax(
                     game, next_state, heuristic, max_depth-1, maxPlayer)
                 v = (v[0]+temp, None)
             v = (v[0]/len(actions_states), v[1])
             return v
-    # Expectimax and max Node
+        # Expectimax and max Node
         else:
             v = (-INFINITY, None)
             # Get the best action (The one with the maximum value) and its value based
