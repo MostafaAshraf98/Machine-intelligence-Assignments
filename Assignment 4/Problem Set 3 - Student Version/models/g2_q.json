@@ -1,0 +1,122 @@
+{
+  "(0, 0)": {
+    "Direction.DOWN": 0.6622882144715392,
+    "Direction.LEFT": 0.6405497107340332,
+    "Direction.RIGHT": 0.6710239011949827,
+    "Direction.UP": 0.6452155206493924
+  },
+  "(0, 1)": {
+    "Direction.DOWN": 0.7586415062017463,
+    "Direction.LEFT": 0.6765529322504514,
+    "Direction.RIGHT": 0.6733892815029158,
+    "Direction.UP": 0.6142236335334161
+  },
+  "(0, 2)": {
+    "Direction.DOWN": 0.7102448331407336,
+    "Direction.LEFT": 0.7489942069849556,
+    "Direction.RIGHT": 0.8602717534338333,
+    "Direction.UP": 0.7150208361290673
+  },
+  "(0, 3)": {
+    "Direction.DOWN": 0.6208731424367401,
+    "Direction.LEFT": 0.6820376262986199,
+    "Direction.RIGHT": 0.6872791815874703,
+    "Direction.UP": 0.7639422806389813
+  },
+  "(0, 4)": {
+    "Direction.DOWN": 0.6465491758604005,
+    "Direction.LEFT": 0.6564268127306795,
+    "Direction.RIGHT": 0.6741987783241692,
+    "Direction.UP": 0.6624059986494936
+  },
+  "(1, 0)": {
+    "Direction.DOWN": 0.6855710903456903,
+    "Direction.LEFT": 0.6131845830563518,
+    "Direction.RIGHT": 0.7385593178363835,
+    "Direction.UP": 0.6728031038944199
+  },
+  "(1, 2)": {
+    "Direction.DOWN": 0.8795770384782561,
+    "Direction.LEFT": 0.8014715520381571,
+    "Direction.RIGHT": 0.9923686846822237,
+    "Direction.UP": 0.8949873921358047
+  },
+  "(1, 4)": {
+    "Direction.DOWN": 0.6696398045053841,
+    "Direction.LEFT": 0.6218381651518174,
+    "Direction.RIGHT": 0.7631106894980715,
+    "Direction.UP": 0.6793072910839932
+  },
+  "(2, 0)": {
+    "Direction.DOWN": 0.8371334078287352,
+    "Direction.LEFT": 0.7253853137161267,
+    "Direction.RIGHT": 0.7191103332033054,
+    "Direction.UP": 0.7419702681213913
+  },
+  "(2, 1)": {
+    "Direction.DOWN": 0.9814474409554697,
+    "Direction.LEFT": 0.8871474675706337,
+    "Direction.RIGHT": 0.8896422784298823,
+    "Direction.UP": 0.7772016250224001
+  },
+  "(2, 3)": {
+    "Direction.DOWN": 0.7810968359701068,
+    "Direction.LEFT": 0.902302523068085,
+    "Direction.RIGHT": 0.8852925295613886,
+    "Direction.UP": 0.9871420753002759
+  },
+  "(2, 4)": {
+    "Direction.DOWN": 0.7470143770959904,
+    "Direction.LEFT": 0.7056070218598012,
+    "Direction.RIGHT": 0.7241506211833497,
+    "Direction.UP": 0.8706379372574318
+  },
+  "(3, 0)": {
+    "Direction.DOWN": 0.6747160659829413,
+    "Direction.LEFT": 0.7304759726414539,
+    "Direction.RIGHT": 0.613086918661898,
+    "Direction.UP": 0.6764088937487045
+  },
+  "(3, 2)": {
+    "Direction.DOWN": 0.8935006264353418,
+    "Direction.LEFT": 0.9892604640495215,
+    "Direction.RIGHT": 0.782791364890401,
+    "Direction.UP": 0.8940815924791998
+  },
+  "(3, 4)": {
+    "Direction.DOWN": 0.6765347687750726,
+    "Direction.LEFT": 0.7563719497534662,
+    "Direction.RIGHT": 0.6131311491354124,
+    "Direction.UP": 0.6758507757521494
+  },
+  "(4, 0)": {
+    "Direction.DOWN": 0.6630149702565279,
+    "Direction.LEFT": 0.6712336579763407,
+    "Direction.RIGHT": 0.6390073799552832,
+    "Direction.UP": 0.6390966320265944
+  },
+  "(4, 1)": {
+    "Direction.DOWN": 0.7556931930054209,
+    "Direction.LEFT": 0.6735516475915824,
+    "Direction.RIGHT": 0.6672473759724006,
+    "Direction.UP": 0.6128353593353622
+  },
+  "(4, 2)": {
+    "Direction.DOWN": 0.7087876099215585,
+    "Direction.LEFT": 0.8693361168803436,
+    "Direction.RIGHT": 0.7487957706670345,
+    "Direction.UP": 0.7059345547053072
+  },
+  "(4, 3)": {
+    "Direction.DOWN": 0.6146379699050994,
+    "Direction.LEFT": 0.6678587127585393,
+    "Direction.RIGHT": 0.672843071308583,
+    "Direction.UP": 0.7523764752736979
+  },
+  "(4, 4)": {
+    "Direction.DOWN": 0.6453976301278248,
+    "Direction.LEFT": 0.6606500064989974,
+    "Direction.RIGHT": 0.634600695650869,
+    "Direction.UP": 0.666493979317293
+  }
+}

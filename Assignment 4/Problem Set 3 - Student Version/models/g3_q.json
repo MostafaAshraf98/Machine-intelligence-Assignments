@@ -1,0 +1,50 @@
+{
+  "(0, 0)": {
+    "Direction.DOWN": 20.77190769675745,
+    "Direction.LEFT": 25.50346529368031,
+    "Direction.RIGHT": 20.91339136134108,
+    "Direction.UP": 24.98741582799834
+  },
+  "(0, 1)": {
+    "Direction.DOWN": 17.043629677910367,
+    "Direction.LEFT": 21.351066146253807,
+    "Direction.RIGHT": 17.907834957900025,
+    "Direction.UP": 24.882276451631057
+  },
+  "(0, 2)": {
+    "Direction.DOWN": 17.001562218521734,
+    "Direction.LEFT": 17.450637387908067,
+    "Direction.RIGHT": 15.077863845912521,
+    "Direction.UP": 19.14965771261257
+  },
+  "(1, 0)": {
+    "Direction.DOWN": 19.24430464048846,
+    "Direction.LEFT": 23.6729932894313,
+    "Direction.RIGHT": 10.720444340431596,
+    "Direction.UP": 19.53780098768282
+  },
+  "(1, 1)": {
+    "Direction.DOWN": 14.559742589087783,
+    "Direction.LEFT": 20.64135485553106,
+    "Direction.RIGHT": 14.4730594831822,
+    "Direction.UP": 19.920364051199982
+  },
+  "(1, 2)": {
+    "Direction.DOWN": 14.140330609028194,
+    "Direction.LEFT": 16.645019552450535,
+    "Direction.RIGHT": 12.068558681763166,
+    "Direction.UP": 17.256364919454505
+  },
+  "(2, 1)": {
+    "Direction.DOWN": 11.859714981112612,
+    "Direction.LEFT": 15.30846268834602,
+    "Direction.RIGHT": 13.056953374823962,
+    "Direction.UP": 11.382713423477618
+  },
+  "(2, 2)": {
+    "Direction.DOWN": 11.79987235195215,
+    "Direction.LEFT": 13.598590520736824,
+    "Direction.RIGHT": 11.735581554241438,
+    "Direction.UP": 13.247317095192448
+  }
+}
