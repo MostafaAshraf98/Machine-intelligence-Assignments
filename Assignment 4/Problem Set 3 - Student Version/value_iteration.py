@@ -66,7 +66,6 @@ class ValueIterationAgent(Agent[S, A]):
 
     def train(self, iterations: int = 1):
         # Starting from the current utilities stored in the agent
-
         # Apply value iteration for a number of iterations
         for _ in range(iterations):
             # Loop over all the states in self
@@ -123,5 +122,10 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
     # Again: this function does incremental update and does not clear the utilities to 0 before running
     # In other words, calling train(M) followed by train(N) is equivalent to just calling train(N+M)
     def train(self, iterations: int = 10):
-        # TODO: Complete this function to apply asynchronous value iteration for the given number of iterations
-        NotImplemented()
+       # Starting from the current utilities stored in the agent
+        # Apply value iteration for a number of iterations
+        for _ in range(iterations):
+            # i is the state number
+            for i in range(len(self.mdp.get_states())):
+                # Compute the utility for this state
+                self.utilities[str(i)] = self.compute_bellman(i)
